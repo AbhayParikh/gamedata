@@ -16,7 +16,7 @@ def game_data(app_id : str):
         chrome_options = Options()
         chrome_options.add_argument('--headless')  # Run Chrome in headless mode
         chrome_options.add_argument('--disable-gpu')  # Disable GPU acceleration
-        driver = webdriver.Chrome(ChromeDriverManager().install(),options=chrome_options)
+        driver = webdriver.Chrome(options=chrome_options)
         driver.get(f'https://play.google.com/store/apps/details?id={app_id}')
         # time.sleep(10)
         # Find an element by its ID and interact with it
