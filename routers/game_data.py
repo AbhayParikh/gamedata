@@ -5,7 +5,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
+
 
 
 router = APIRouter(tags=['GameData'])
@@ -16,7 +17,8 @@ def game_data(app_id : str):
         chrome_options = Options()
         chrome_options.add_argument('--headless')  # Run Chrome in headless mode
         chrome_options.add_argument('--disable-gpu')  # Disable GPU acceleration
-        driver = webdriver.Chrome(options=chrome_options)
+        service = Service(executable_path='chromedriver.exe')
+        driver = webdriver.Chrome(options=chrome_options,service=service)
         driver.get(f'https://play.google.com/store/apps/details?id={app_id}')
         # time.sleep(10)
         # Find an element by its ID and interact with it
